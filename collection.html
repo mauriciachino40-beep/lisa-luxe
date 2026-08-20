@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collection — Lisa Luxe</title>
+  <link rel="stylesheet" href="css/style.css?v=4">
+</head>
+<body>
+
+<!-- ====== Navigation ====== -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Lisa Luxe</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#collections">Collections</a>
+      <a href="index.html#catalog">Catalog</a>
+      <a href="index.html#contact">Contact</a>
+      <button class="nav-cart" aria-label="Cart" onclick="alert('Checkout coming soon ✨')">
+        <span>Cart</span>
+        <span class="nav-cart-num">(0)</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ====== Collection Header ====== -->
+<section class="collection-header">
+  <h1 class="collection-title" id="colTitle">Collection</h1>
+  <p class="collection-sub" id="colSub"></p>
+</section>
+
+<!-- ====== Category Filter ====== -->
+<div class="cat-filter" id="catFilter"></div>
+
+<!-- ====== Product Grid ====== -->
+<section class="section collection-grid">
+  <div class="product-grid" id="productGrid"></div>
+</section>
+
+<!-- ====== Footer ====== -->
+<footer class="footer" id="contact">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      Lisa Luxe
+      <p>Timeless jewelry, crafted with care.</p>
+    </div>
+    <div class="fcol">
+      <h4>Shop</h4>
+      <a href="index.html#collections">All Collections</a>
+      <a href="index.html#catalog">All Products</a>
+    </div>
+    <div class="fcol">
+      <h4>Connect</h4>
+      <a href="#">About Us</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </div>
+  <div class="footer-news">
+    <h4>Sign up for our newsletter</h4>
+    <form class="footer-form" onsubmit="event.preventDefault();alert('Thanks for subscribing!')">
+      <input type="email" placeholder="Your email address" required>
+      <button type="submit">SUBSCRIBE</button>
+    </form>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Lisa Luxe</span>
+    <a href="#">Privacy Policy</a>
+  </div>
+</footer>
+
+<!-- ====== JS ====== -->
+<script>
+// Collection definitions — category filters per collection
+const COLLECTIONS = {
+  clover: {
+    name: 'Clover Collection',
+    sub: 'Necklaces, bracelets, rings & earrings',
+    categories: ['Necklace', 'Bracelet', 'Ring', 'Earring']
+  },
+  carti: {
+    name: 'Carti Collection',
+    sub: 'Rings & bangles',
+    categories: ['Ring', 'Bangle']
+  },
+  cc: {
+    name: 'CC Collection',
+    sub: 'Earrings',
+    categories: ['Earring']
+  }
+};
+
+// Read ?c=clover | ?c=carti | ?c=cc (default: clover)
+const params = new URLSearchParams(window.location.search);
+const key = COLLECTIONS[params.get('c')] ? params.get('c') : 'clover';
+const col = COLLECTIONS[key];
+
+document.title = col.name + ' — Lisa Luxe';
+document.getElementById('colTitle').textContent = col.name;
+document.getElementById('colSub').textContent = col.sub;
+
+// Build category filter pills (All + categories)
+const filter = document.getElementById('catFilter');
+['All', ...col.categories].forEach(cat => {
+  const b = document.createElement('button');
+  b.className = 'cat-pill' + (cat === 'All' ? ' active' : '');
+  b.textContent = cat;
+  b.dataset.cat = cat;
+  filter.appendChild(b);
+});
+
+// Build placeholder products — 4 per category
+const products = [];
+col.categories.forEach(cat => {
+  for (let i = 1; i <= 4; i++) {
+    products.push({ cat, name: cat + ' ' + i });
+  }
+});
+
+function render(cat) {
+  const list = cat === 'All' ? products : products.filter(p => p.cat === cat);
+  document.getElementById('productGrid').innerHTML = list.map(p =>
+    '<a href="product.html" class="product-card">' +
+      '<div class="card-img"><img src="images/placeholder.svg" alt="' + p.name + '"></div>' +
+      '<p class="card-name">' + p.name + '</p>' +
+      '<p class="card-price">$0.00</p>' +
+      '<span class="card-btn">Add</span>' +
+    '</a>'
+  ).join('');
+}
+
+filter.addEventListener('click', e => {
+  const pill = e.target.closest('.cat-pill');
+  if (!pill) return;
+  filter.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+  pill.classList.add('active');
+  render(pill.dataset.cat);
+});
+
+render('All');
+</script>
+</body>
+</html>
