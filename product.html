@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product — Lisa Luxe</title>
+  <link rel="stylesheet" href="css/style.css?v=2">
+</head>
+<body>
+
+<!-- ====== Navigation ====== -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Lisa Luxe</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#collections">Collections</a>
+      <a href="index.html#catalog">Catalog</a>
+      <a href="index.html#contact">Contact</a>
+      <button class="nav-cart" aria-label="Cart" onclick="alert('Checkout coming soon ✨')">
+        <span>Cart</span>
+        <span class="nav-cart-num">(0)</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ====== Product Detail ====== -->
+<section class="pdp">
+  <!-- Gallery -->
+  <div class="pdp-gallery">
+    <div class="pdp-main">
+      <img src="images/placeholder.svg" alt="Product image" id="mainImg">
+    </div>
+    <div class="pdp-thumbs">
+      <button class="pdp-thumb active" data-img="images/placeholder.svg">
+        <img src="images/placeholder.svg" alt="Thumbnail 1">
+      </button>
+      <button class="pdp-thumb" data-img="images/placeholder.svg">
+        <img src="images/placeholder.svg" alt="Thumbnail 2">
+      </button>
+      <button class="pdp-thumb" data-img="images/placeholder.svg">
+        <img src="images/placeholder.svg" alt="Thumbnail 3">
+      </button>
+    </div>
+  </div>
+
+  <!-- Info -->
+  <div class="pdp-info">
+    <h1 class="pdp-title">Product Name</h1>
+    <p class="pdp-price">$0.00</p>
+
+    <button class="pdp-add" onclick="alert('Checkout coming soon ✨')">Add to Cart</button>
+
+    <p class="pdp-desc">Bracelet in Italian 925 silver with mini clovers and rhinestones inlaid.</p>
+
+    <!-- Accordion -->
+    <div class="pdp-accordion">
+      <details open>
+        <summary>Your Lucky Charm</summary>
+        <div class="pdp-body">
+          <p>A little reminder of luck and light, designed to be worn every day.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Care</summary>
+        <div class="pdp-body">
+          <p>Gently wash with warm water and dry with a soft cloth. Store in a pouch when not worn.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Design</summary>
+        <div class="pdp-body">
+          <p>Hand-finished with precision, crafted to keep its shine for years.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Related ====== -->
+<section class="related">
+  <h2 class="related-title">You may also like</h2>
+  <div class="product-grid">
+    <a href="product.html" class="product-card">
+      <div class="card-img"><img src="images/placeholder.svg" alt="Product"></div>
+      <p class="card-name">Product name</p>
+      <p class="card-price">$0.00</p>
+      <span class="card-btn">Add</span>
+    </a>
+    <a href="product.html" class="product-card">
+      <div class="card-img"><img src="images/placeholder.svg" alt="Product"></div>
+      <p class="card-name">Product name</p>
+      <p class="card-price">$0.00</p>
+      <span class="card-btn">Add</span>
+    </a>
+    <a href="product.html" class="product-card">
+      <div class="card-img"><img src="images/placeholder.svg" alt="Product"></div>
+      <p class="card-name">Product name</p>
+      <p class="card-price">$0.00</p>
+      <span class="card-btn">Add</span>
+    </a>
+    <a href="product.html" class="product-card">
+      <div class="card-img"><img src="images/placeholder.svg" alt="Product"></div>
+      <p class="card-name">Product name</p>
+      <p class="card-price">$0.00</p>
+      <span class="card-btn">Add</span>
+    </a>
+  </div>
+</section>
+
+<!-- ====== Footer ====== -->
+<footer class="footer" id="contact">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      Lisa Luxe
+      <p>Timeless jewelry, crafted with care.</p>
+    </div>
+    <div class="fcol">
+      <h4>Shop</h4>
+      <a href="index.html#collections">All Collections</a>
+      <a href="index.html#catalog">All Products</a>
+    </div>
+    <div class="fcol">
+      <h4>Connect</h4>
+      <a href="#">About Us</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </div>
+  <div class="footer-news">
+    <h4>Sign up for our newsletter</h4>
+    <form class="footer-form" onsubmit="event.preventDefault();alert('Thanks for subscribing!')">
+      <input type="email" placeholder="Your email address" required>
+      <button type="submit">SUBSCRIBE</button>
+    </form>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Lisa Luxe</span>
+    <a href="#">Privacy Policy</a>
+  </div>
+</footer>
+
+<!-- ====== JS ====== -->
+<script>
+// Thumbnail switching
+document.querySelectorAll('.pdp-thumb').forEach(thumb => {
+  thumb.addEventListener('click', () => {
+    document.querySelectorAll('.pdp-thumb').forEach(t => t.classList.remove('active'));
+    thumb.classList.add('active');
+    document.getElementById('mainImg').src = thumb.dataset.img;
+  });
+});
+</script>
+</body>
+</html>

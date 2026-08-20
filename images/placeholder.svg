@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <rect width="600" height="600" fill="#F5F3EF"/>
+  <g fill="none" stroke="#E4C891" stroke-width="2">
+    <circle cx="300" cy="300" r="150" opacity="0.5"/>
+    <circle cx="300" cy="300" r="100" opacity="0.7"/>
+  </g>
+  <path d="M300 200 L340 260 L400 270 L350 315 L365 375 L300 345 L235 375 L250 315 L200 270 L260 260 Z" fill="#E4C891" opacity="0.35"/>
+  <text x="300" y="440" font-family="Georgia, 'Times New Roman', serif" font-size="20" letter-spacing="6" fill="#A09B95" text-anchor="middle">LISA LUXE</text>
+</svg>

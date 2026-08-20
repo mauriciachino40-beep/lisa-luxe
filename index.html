@@ -4,24 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LISA LUXE — Timeless Jewelry</title>
-  <link rel="stylesheet" href="css/style.css?v=1">
+  <link rel="stylesheet" href="css/style.css?v=2">
 </head>
 <body>
-
-<!-- ====== Announcement ====== -->
-<div class="announcement">Lucky you — honest quality from your most trusted jewelry seller ✦ Free shipping on us</div>
 
 <!-- ====== Navigation ====== -->
 <header class="nav">
   <div class="nav-inner">
-    <a href="/" class="nav-logo">LISA LUXE</a>
+    <a href="index.html" class="nav-logo">Lisa Luxe</a>
     <div class="nav-links">
-      <a href="#shop">Shop</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="index.html">Home</a>
+      <a href="index.html#collections">Collections</a>
+      <a href="index.html#catalog">Catalog</a>
+      <a href="index.html#contact">Contact</a>
       <button class="nav-cart" aria-label="Cart" onclick="alert('Checkout coming soon ✨')">
         <span>Cart</span>
-        <span class="nav-cart-num"></span>
+        <span class="nav-cart-num">(0)</span>
       </button>
     </div>
   </div>
@@ -38,6 +36,7 @@
   <div class="hero-overlay">
     <h1 class="hero-logo">Lisa Luxe</h1>
     <p class="hero-tagline">Timeless Jewelry</p>
+    <a href="#collections" class="hero-cta">Shop Now</a>
   </div>
   <div class="hero-dots">
     <button class="hero-dot active" data-index="0"></button>
@@ -47,292 +46,109 @@
   </div>
 </section>
 
-<!-- ====== Product Detail ====== -->
-<section class="prod-detail" id="shop">
-  <div class="prod-layout">
-
-    <!-- ── Left: Image Gallery ── -->
-    <div class="prod-gallery">
-      <div class="prod-slides">
-        <img src="images/1111111.webp" alt="Jewelry" class="prod-slide active" id="slideGold">
+<!-- ====== Collections ====== -->
+<section class="section" id="collections">
+  <h2 class="section-title">Our Collections</h2>
+  <p class="section-sub">Discover pieces crafted to last a lifetime</p>
+  <div class="collections">
+    <a href="index.html#catalog" class="collection-tile">
+      <img src="images/hero-2.png" alt="Golden Aura">
+      <div class="col-label">
+        <span class="col-name">Golden Aura</span>
+        <span class="col-count">17 pieces</span>
       </div>
-    </div>
-
-    <!-- ── Right: Info ── -->
-    <div class="prod-info">
-      <p class="prod-kicker">Live Sale Exclusive</p>
-      <p class="prod-price" id="prodPrice">$40.00</p>
-      <p class="prod-discount" id="prodDiscount"><span class="each">$40.00 each</span></p>
-
-      <div class="prod-options" id="prodOptions">
-        <!-- Bulk Jewelry -->
-        <p class="info-label">Bulk Jewelry</p>
-        <div class="option-pills">
-          <button class="option-pill" data-name="Jewelry — 1pcs" data-price="40" data-img="images/jewelry-bulk.jpg">1pcs</button>
-          <button class="option-pill" data-name="Jewelry — 2pcs" data-price="72" data-img="images/jewelry-bulk.jpg">2pcs</button>
-          <button class="option-pill" data-name="Jewelry — 3pcs" data-price="102" data-img="images/jewelry-bulk.jpg">3pcs</button>
-          <button class="option-pill" data-name="Jewelry — 4pcs" data-price="128" data-img="images/jewelry-bulk.jpg">4pcs</button>
-          <button class="option-pill" data-name="Jewelry — 5pcs" data-price="160" data-img="images/jewelry-bulk.jpg">5pcs</button>
-          <button class="option-pill" data-name="Jewelry — 6pcs" data-price="192" data-img="images/jewelry-bulk.jpg">6pcs</button>
-          <button class="option-pill" data-name="Jewelry — 7pcs" data-price="224" data-img="images/jewelry-bulk.jpg">7pcs</button>
-          <button class="option-pill" data-name="Jewelry — 8pcs" data-price="255" data-img="images/jewelry-bulk.jpg">8pcs</button>
-        </div>
-
-        <!-- Special Items -->
-        <p class="info-label">Special Items</p>
-        <div class="option-pills">
-          <button class="option-pill" data-name="10 motifs necklace" data-price="59" data-img="images/necklace-10motifs.jpg">10 motifs necklace</button>
-          <button class="option-pill" data-name="Slim nail bangle" data-price="59" data-img="images/bangle-slim.jpg">Slim nail bangle</button>
-          <button class="option-pill" data-name="Ct unlimited love bracelet" data-price="75" data-img="images/bracelet-love.jpg">Ct unlimited love bracelet</button>
-        </div>
-
-        <!-- Gift Box -->
-        <p class="info-label">Gift Box</p>
-        <div class="option-pills">
-          <button class="option-pill" data-name="Gift Box — 1 motif necklace &amp; earpins" data-price="9" data-img="images/box-necklace.jpg">1 motif necklace &amp; earpins</button>
-          <button class="option-pill" data-name="Gift Box — bracelet gift box" data-price="15" data-img="images/box-bracelet.jpg">Bracelet gift box</button>
-          <button class="option-pill" data-name="Gift Box — bracelet pouch" data-price="18" data-img="images/box-pouch.jpg">Bracelet pouch</button>
-          <button class="option-pill" data-name="Gift Box — 10 motifs necklace" data-price="21" data-img="images/box-necklace10.jpg">10 motifs necklace</button>
-          <button class="option-pill" data-name="Gift Box — earclips" data-price="14" data-img="images/box-earclips.jpg">Earclips</button>
-        </div>
+    </a>
+    <a href="index.html#catalog" class="collection-tile">
+      <img src="images/hero-3.png" alt="Mystic Silver">
+      <div class="col-label">
+        <span class="col-name">Mystic Silver</span>
+        <span class="col-count">12 pieces</span>
       </div>
-
-      <!-- Buttons -->
-      <button class="btn-atc" onclick="alert('Checkout coming soon ✨')">
-        ADD TO CART
-      </button>
-
-      <a href="#contact" class="btn-buy">
-        BUY IT NOW
-      </a>
-
-      <!-- Product Intro -->
-      <p class="prod-desc">Choose color and design with the host, and directly pay for right amount.</p>
-      <p class="prod-desc-accept">Accept PAYPAL &amp; CREDIT CARDS !!</p>
-
-      <!-- Selling Points (dynamic) -->
-      <div class="sell-points" id="sellPoints"></div>
-
-      <!-- ── Accordion ── -->
-      <div class="prod-accordion">
-        <details class="prod-detail-item" open>
-          <summary>Shipping</summary>
-          <div class="prod-detail-body">
-            <p>Free standard shipping on all orders. Processing takes 1–2 business days.</p>
-            <ul>
-              <li>🌏 International: 10–20 business days</li>
-            </ul>
-          </div>
-        </details>
-        <details class="prod-detail-item">
-          <summary>Materials</summary>
-          <div class="prod-detail-body">
-            <p>We are thrilled to be part of your jewelry journey. Here is a quick look at our premium materials.</p>
-            <p><strong>Base</strong></p>
-            <ul>
-              <li>Hypoallergenic alloy</li>
-              <li>Triple-layered 18K gold plating</li>
-            </ul>
-            <p><strong>Accents</strong></p>
-            <ul>
-              <li>Natural Tiger's Eye</li>
-              <li>Mother of Pearl &amp; Agate</li>
-              <li>Vibrant Malachite-style &amp; Turquoise-colored stones</li>
-            </ul>
-            <p><strong>Craftsmanship</strong></p>
-            <ul>
-              <li>High-carbon diamonds</li>
-              <li>A secure lobster clasp</li>
-              <li>And a crisp authenticity stamp</li>
-            </ul>
-          </div>
-        </details>
-        <details class="prod-detail-item">
-          <summary>Care Instructions</summary>
-          <div class="prod-detail-body">
-            <ul>
-              <li>☀️ Keep away from direct sunlight and heat</li>
-              <li>😴 Remove your jewelry when sleeping</li>
-              <li>🧴 Allow perfumes or lotion to dry before wearing</li>
-              <li>🚿 Remove before entering water for bath or swim</li>
-              <li>🏋️ Remove during physical activities or workout</li>
-              <li>📦 Store in a container box and pouch</li>
-            </ul>
-          </div>
-        </details>
+    </a>
+    <a href="index.html#catalog" class="collection-tile">
+      <img src="images/hero-1.png" alt="Pearl Éclat">
+      <div class="col-label">
+        <span class="col-name">Pearl Éclat</span>
+        <span class="col-count">9 pieces</span>
       </div>
-    </div>
-
+    </a>
   </div>
 </section>
 
-<!-- ====== Customer Reviews ====== -->
-<section class="reviews" id="reviews">
-  <h2 class="reviews-title">What Our Customers Say</h2>
-  <p class="reviews-sub">Real reviews from real customers 💬</p>
-
-  <!-- Testimonials -->
-  <div class="reviews-quotes">
-    <div class="quote-card">“You won't regret it”</div>
-    <div class="quote-card">“I received 5 pieces and they are amazing”</div>
-    <div class="quote-card">“Looks exactly like the one I bought at the store”</div>
-    <div class="quote-card">“Lisa I love my jewelry, you're the best”</div>
-    <div class="quote-card">“You guys have to buy from Lisa, she's the best”</div>
-    <div class="quote-card">“Just received my set, love it”</div>
-    <div class="quote-card">“I am so in love, can't wait to buy more”</div>
-    <div class="quote-card">“Everything is gorgeous, I love it”</div>
-    <div class="quote-card">“Ready to place my next order with you”</div>
-    <div class="quote-card">“Received my bracelet &amp; necklace, so in love”</div>
+<!-- ====== New This Season ====== -->
+<section class="section" id="catalog">
+  <h2 class="section-title">New This Season</h2>
+  <p class="section-sub">Fresh arrivals, hand-selected for you</p>
+  <div class="product-grid">
+    <a href="product.html" class="product-card">
+      <div class="card-img"><img src="images/placeholder.svg" alt="Product"></div>
+      <p class="card-name">Product name</p>
+      <p class="card-price">$0.00</p>
+      <span class="card-btn">Add</span>
+    </a>
+    <a href="product.html" class="product-card">
+      <div class="card-img"><img src="images/placeholder.svg" alt="Product"></div>
+      <p class="card-name">Product name</p>
+      <p class="card-price">$0.00</p>
+      <span class="card-btn">Add</span>
+    </a>
+    <a href="product.html" class="product-card">
+      <div class="card-img"><img src="images/placeholder.svg" alt="Product"></div>
+      <p class="card-name">Product name</p>
+      <p class="card-price">$0.00</p>
+      <span class="card-btn">Add</span>
+    </a>
+    <a href="product.html" class="product-card">
+      <div class="card-img"><img src="images/placeholder.svg" alt="Product"></div>
+      <p class="card-name">Product name</p>
+      <p class="card-price">$0.00</p>
+      <span class="card-btn">Add</span>
+    </a>
   </div>
-
-  <div class="reviews-grid" id="reviewsGrid">
-    <img src="images/re1.JPG" alt="Customer review" class="review-img">
-    <img src="images/re2.JPG" alt="Customer review" class="review-img">
-    <img src="images/re3.JPG" alt="Customer review" class="review-img">
-    <img src="images/re4.JPG" alt="Customer review" class="review-img">
-    <img src="images/re5.JPG" alt="Customer review" class="review-img">
-    <img src="images/re6.JPG" alt="Customer review" class="review-img">
-    <img src="images/re7.JPG" alt="Customer review" class="review-img">
-    <img src="images/re8.JPG" alt="Customer review" class="review-img">
-    <img src="images/re9.JPG" alt="Customer review" class="review-img">
-    <img src="images/re10.JPG" alt="Customer review" class="review-img">
-    <img src="images/re11.JPG" alt="Customer review" class="review-img">
-    <img src="images/re12.JPG" alt="Customer review" class="review-img">
-    <img src="images/re13.jpg" alt="Customer review" class="review-img">
-  </div>
-  <p class="reviews-hint">← Swipe to see more →</p>
 </section>
 
-<!-- ====== About ====== -->
-<section class="about" id="about">
-  <div class="about-inner">
-    <h2>Crafted With Care</h2>
-    <p>Every Lisa Luxe piece is thoughtfully designed and hand-finished. We use only quality materials — from natural pearls to gold-plated brass — to create jewelry that lasts.</p>
+<!-- ====== Promo Banner ====== -->
+<section class="promo">
+  <img src="images/hero-1.png" alt="Promo">
+  <div class="promo-overlay">
+    <h2>Premium silver &amp; gold plated, hand-selected finishing touches</h2>
+    <a href="index.html#catalog" class="promo-btn">Shop Now</a>
   </div>
 </section>
 
 <!-- ====== Footer ====== -->
 <footer class="footer" id="contact">
-  <div class="footer-top">
-    <h3>Stay In The Loop</h3>
-    <p>Sign up for exclusive offers and new arrivals.</p>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      Lisa Luxe
+      <p>Timeless jewelry, crafted with care.</p>
+    </div>
+    <div class="fcol">
+      <h4>Shop</h4>
+      <a href="index.html#collections">All Collections</a>
+      <a href="index.html#catalog">All Products</a>
+    </div>
+    <div class="fcol">
+      <h4>Connect</h4>
+      <a href="#">About Us</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </div>
+  <div class="footer-news">
+    <h4>Sign up for our newsletter</h4>
     <form class="footer-form" onsubmit="event.preventDefault();alert('Thanks for subscribing!')">
       <input type="email" placeholder="Your email address" required>
       <button type="submit">SUBSCRIBE</button>
     </form>
   </div>
-  <div class="footer-links">
-    <div class="fcol"><h4>Shop</h4><a href="#">All Products</a><a href="#">New Arrivals</a></div>
-    <div class="fcol"><h4>About</h4><a href="#">Our Story</a><a href="#">Contact</a><a href="#">FAQ</a></div>
-    <div class="fcol"><h4>Support</h4><a href="#">Shipping</a><a href="#">FAQ</a></div>
-    <div class="fcol"><h4>Follow</h4><a href="#">Instagram</a><a href="#">Pinterest</a><a href="#">TikTok</a></div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Lisa Luxe</span>
+    <a href="#">Privacy Policy</a>
   </div>
-  <p class="footer-disclaimer">All products are independently sourced and not affiliated with, endorsed by, or associated with any other brand. Brand names and logos are trademarks of their respective owners.</p>
-  <p class="footer-copy">&copy; 2026 Lisa Luxe.</p>
 </footer>
 
 <!-- ====== JS ====== -->
 <script>
-let selectedName = 'Jewelry — 1pcs';
-let selectedPrice = '40.00';
-let selectedImg  = 'images/1111111.webp';
-
-// Selling points data
-const SELL = {
-  clover: {
-    title: '✨ Why You\'ll Love This Clover Piece',
-    points: [
-      'Authentic gold tone — soft, true gold; never that brassy yellow',
-      'Precision clover silhouette — balanced, classic proportions',
-      'CNC clasp — secure, smooth to fasten, built to last',
-      'Crisp hallmark stamp — every detail faithfully rendered',
-      'Plump, rounded beads — evenly sized, perfectly smooth to the touch',
-      'Thick gold plating — take good care and they stay brilliant for years',
-      'Natural stones — genuine freshwater pearls with real lustre, onyx, carnelian & more'
-    ]
-  },
-  bangle: {
-    title: '✨ Why You\'ll Love This Nail Bangle',
-    points: [
-      'Soft light-gold hue — understated, elegant',
-      'Twist-to-open mechanism — needs serious craftsmanship to get this right',
-      'Extra-thick gold plating — made for daily wear',
-      'Timeless & low-key — simple enough for every day, elegant enough for any occasion'
-    ]
-  },
-  bracelet: {
-    title: '✨ Why You\'ll Love This Bracelet',
-    points: [
-      'Authentic gold tone — soft, true gold; never that brassy yellow',
-      'Thick gold plating — take good care and they stay brilliant for years',
-      'Crisp hallmark stamp — every detail faithfully rendered',
-      'Timeless design — classic enough to wear daily, elegant enough for special occasions'
-    ]
-  }
-};
-
-function sync() {
-  document.getElementById('prodPrice').textContent = '$' + parseFloat(selectedPrice).toFixed(2);
-  updateDiscount(selectedName, parseFloat(selectedPrice));
-  updateSellPoints(selectedName);
-}
-
-// Show savings for bulk jewelry
-function updateDiscount(name, price) {
-  const el = document.getElementById('prodDiscount');
-  const m = name.match(/Jewelry — (\d)pcs/);
-  if (m) {
-    const qty = parseInt(m[1]);
-    if (qty > 1) {
-      const original = qty * 40;
-      const save = original - price;
-      const each = price / qty;
-      const pct = Math.round((save / original) * 100);
-      el.innerHTML =
-        '<del>$' + original.toFixed(2) + '</del>' +
-        '<span class="save">Save $' + save + ' (' + pct + '%)</span>' +
-        '<span class="each">· $' + each.toFixed(2) + ' each</span>';
-    } else {
-      el.innerHTML = '<span class="each">$40.00 each</span>';
-    }
-  } else {
-    el.innerHTML = '<span class="each">$' + price.toFixed(2) + '</span>';
-  }
-}
-
-// Switch selling points based on selection
-function updateSellPoints(name) {
-  const el = document.getElementById('sellPoints');
-  let data;
-  if (name.toLowerCase().includes('bangle')) {
-    data = SELL.bangle;
-  } else if (name.toLowerCase().includes('love bracelet')) {
-    data = SELL.bracelet;
-  } else {
-    data = SELL.clover;
-  }
-  el.innerHTML =
-    '<p class="sell-points-title">' + data.title + '</p>' +
-    '<ul class="sell-points-list">' +
-    data.points.map(p => '<li>' + p + '</li>').join('') +
-    '</ul>';
-}
-
-// Option pill selection — one active across all groups + switch image
-document.getElementById('prodOptions').addEventListener('click', e => {
-  const p = e.target.closest('.option-pill');
-  if (!p) return;
-  document.querySelectorAll('#prodOptions .option-pill').forEach(el => el.classList.remove('selected'));
-  p.classList.add('selected');
-  selectedName  = p.dataset.name;
-  selectedPrice = p.dataset.price;
-  selectedImg   = p.dataset.img;
-  // Switch the active slide image (bust cache)
-  const activeSlide = document.querySelector('.prod-slide.active');
-  if (activeSlide) activeSlide.src = selectedImg;
-  sync();
-});
-
 // Hero slideshow auto-rotation
 (function() {
   const slides = document.querySelectorAll('.hero-bg');
@@ -356,8 +172,6 @@ document.getElementById('prodOptions').addEventListener('click', e => {
     });
   });
 })();
-
-sync();
 </script>
 </body>
 </html>
