@@ -560,6 +560,40 @@ button { cursor: pointer; font-family: inherit; }
   line-height: 1.7;
 }
 
+/* Selling points */
+.pdp-sell {
+  margin-top: 24px;
+  padding: 22px 24px;
+  background: var(--gray-100);
+  border-radius: 4px;
+}
+.pdp-sell-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 14px;
+}
+.pdp-sell-list {
+  list-style: none;
+  margin: 0; padding: 0;
+}
+.pdp-sell-list li {
+  position: relative;
+  padding-left: 18px;
+  margin: 7px 0;
+  font-size: 14px;
+  color: var(--gray-600);
+  line-height: 1.6;
+}
+.pdp-sell-list li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 8px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
 /* Accordion */
 .pdp-accordion {
   margin-top: 24px;
@@ -589,6 +623,16 @@ button { cursor: pointer; font-family: inherit; }
   font-size: 14px;
   color: var(--gray-600);
   line-height: 1.7;
+}
+.pdp-accordion .pdp-body ul {
+  margin: 8px 0 12px 18px;
+}
+.pdp-accordion .pdp-body li {
+  margin: 3px 0;
+}
+.pdp-accordion .pdp-body strong {
+  color: var(--navy);
+  font-weight: 600;
 }
 
 /* Related */
