@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Collection — Lisa Luxe</title>
-  <link rel="stylesheet" href="css/style.css?v=4">
+  <link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body>
 
@@ -14,7 +14,15 @@
     <a href="index.html" class="nav-logo">Lisa Luxe</a>
     <div class="nav-links">
       <a href="index.html">Home</a>
-      <a href="index.html#collections">Collections</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" type="button">Collections</button>
+        <div class="nav-dropdown-menu">
+          <a href="index.html#collections">All Collections</a>
+          <a href="collection.html?c=clover">Clover Collection</a>
+          <a href="collection.html?c=carti">Carti Collection</a>
+          <a href="collection.html?c=cc">CC Collection</a>
+        </div>
+      </div>
       <a href="index.html#catalog">Catalog</a>
       <a href="index.html#contact">Contact</a>
       <button class="nav-cart" aria-label="Cart" onclick="alert('Checkout coming soon ✨')">
