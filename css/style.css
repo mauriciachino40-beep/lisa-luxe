@@ -334,11 +334,9 @@ button { cursor: pointer; font-family: inherit; }
   display: flex; justify-content: center;
 }
 .about-media img {
-  max-height: 480px;
+  max-height: 220px;
   width: auto;
   max-width: 100%;
-  border-radius: 4px;
-  border: 1px solid var(--gray-200);
 }
 .about-body h2 {
   font-size: clamp(24px, 3vw, 32px);
@@ -478,6 +476,7 @@ button { cursor: pointer; font-family: inherit; }
 }
 .footer-brand { font-size: 20px; letter-spacing: 5px; font-family: var(--serif); text-transform: uppercase; }
 .footer-brand p { font-size: 12px; color: rgba(253,251,247,.5); margin-top: 8px; letter-spacing: 0; }
+.footer-brand img { height: 48px; width: auto; display: block; margin-bottom: 12px; }
 .fcol h4 {
   font-size: 11px; font-weight: 700;
   letter-spacing: 1.5px;
