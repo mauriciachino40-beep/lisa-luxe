@@ -1,5 +1,5 @@
 /* ================================================================
-   LISA LUXE — Timeless Jewelry
+   Heritage Luxury Finds — Luxury Finds by Lisa Dee
    Homepage + Product page (Clover-inspired framework)
    ================================================================ */
 
@@ -8,7 +8,7 @@
 
 :root {
   --cream: #FDFBF7;
-  --navy: #2E2A39;
+  --navy: #141F4D;
   --gold: #E4C891;
   --gray-100: #F5F3EF;
   --gray-200: #E8E4DD;
@@ -51,9 +51,9 @@ button { cursor: pointer; font-family: inherit; }
   .nav-inner { padding: 16px 20px; }
 }
 .nav-logo {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 300;
-  letter-spacing: 6px;
+  letter-spacing: 3px;
   color: var(--navy);
   text-transform: uppercase;
   font-family: var(--serif);
@@ -348,8 +348,9 @@ button { cursor: pointer; font-family: inherit; }
 .promo {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 7;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
+  background: #141F4D;
 }
 .promo img {
   width: 100%; height: 100%;
@@ -551,7 +552,7 @@ button { cursor: pointer; font-family: inherit; }
   text-transform: uppercase;
   transition: background .2s;
 }
-.pdp-add:hover { background: #3D3648; }
+.pdp-add:hover { background: #1E2B66; }
 
 .pdp-desc {
   margin-top: 24px;
