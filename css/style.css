@@ -181,6 +181,11 @@ button { cursor: pointer; font-family: inherit; }
   margin: 22px auto 0;
   background: var(--navy);
 }
+.hero-logo {
+  display: block;
+  width: min(440px, 80%);
+  margin: 0 auto;
+}
 .hero-links {
   margin-top: 36px;
   display: flex;
