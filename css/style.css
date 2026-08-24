@@ -54,7 +54,18 @@ button { cursor: pointer; font-family: inherit; }
 }
 @media (max-width: 767px) {
   .nav-inner { padding: 12px 16px; gap: 12px; }
+  .nav-wordmark img { height: 28px; }
   .nav-logo img { height: 36px; }
+}
+.nav-wordmark {
+  display: block;
+  line-height: 0;
+  justify-self: start;
+}
+.nav-wordmark img {
+  height: 40px;
+  width: auto;
+  display: block;
 }
 .nav-logo {
   display: block;
@@ -68,7 +79,6 @@ button { cursor: pointer; font-family: inherit; }
 .nav-links {
   display: flex; align-items: center; gap: 32px;
 }
-.nav-links-left { justify-self: start; }
 .nav-links-right { justify-self: end; }
 .nav-links a {
   font-size: 13px; font-weight: 400;
