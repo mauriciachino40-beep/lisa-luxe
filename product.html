@@ -4,13 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Product — Heritage Luxury Finds</title>
-  <link rel="stylesheet" href="css/style.css?v=16">
+  <link rel="stylesheet" href="css/style.css?v=17">
 </head>
 <body>
 
 <!-- ====== Navigation ====== -->
 <header class="nav">
   <div class="nav-inner">
+    <button class="nav-burger" type="button" aria-label="Menu" aria-expanded="false" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-links nav-links-left">
       <a href="index.html">Home</a>
       <div class="nav-dropdown">
@@ -32,6 +35,18 @@
         <span class="nav-cart-num">(0)</span>
       </button>
     </div>
+    <button class="nav-cart-mobile" type="button" aria-label="Cart" onclick="alert('Checkout coming soon ✨')">
+      Cart <span class="nav-cart-num">(0)</span>
+    </button>
+  </div>
+  <div class="nav-mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="index.html#collections">All Collections</a>
+    <a href="collection.html?c=clover">Clover Collection</a>
+    <a href="collection.html?c=carti">Carti Collection</a>
+    <a href="collection.html?c=cc">CC Collection</a>
+    <a href="index.html#catalog">Catalog</a>
+    <a href="index.html#contact">Contact</a>
   </div>
 </header>
 
@@ -199,6 +214,20 @@ document.querySelectorAll('.pdp-thumb').forEach(thumb => {
     document.querySelectorAll('.pdp-thumb').forEach(t => t.classList.remove('active'));
     thumb.classList.add('active');
     document.getElementById('mainImg').src = thumb.dataset.img;
+  });
+});
+</script>
+<script>
+function toggleMenu() {
+  var menu = document.getElementById('mobileMenu');
+  var btn = document.querySelector('.nav-burger');
+  var open = menu.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+document.querySelectorAll('#mobileMenu a').forEach(function(link) {
+  link.addEventListener('click', function() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.querySelector('.nav-burger').setAttribute('aria-expanded', 'false');
   });
 });
 </script>
