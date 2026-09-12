@@ -118,6 +118,7 @@
     .field{ margin-bottom:24px; }
     .q{ display:block; font-weight:600; font-size:15px; margin-bottom:3px; }
     .hint{ display:block; font-weight:400; font-size:12.5px; color:var(--muted); margin-bottom:10px; }
+    .tag{ display:inline-block; font-size:11px; font-weight:500; color:var(--muted); background:color-mix(in srgb, var(--muted) 14%, transparent); padding:2px 8px; border-radius:999px; margin-left:6px; vertical-align:2px; letter-spacing:.02em; }
 
     .opts{ display:flex; flex-wrap:wrap; gap:8px; }
     .opt{ position:relative; cursor:pointer; }
@@ -190,7 +191,7 @@
       <span class="brand-name"><em>Luxury Finds</em> by Lisa Dee</span>
     </div>
     <h1>Website requirements</h1>
-    <p class="lede">Fill this in once, then tap <strong>Copy my answers</strong> at the bottom and paste it back to us. Everything saves automatically as you type — no need to finish in one sitting.</p>
+    <p class="lede">Fill this in once, then tap <strong>Copy my answers</strong> at the bottom and paste it back to us. Everything saves automatically as you type — and every question is optional, so skip anything that doesn't apply.</p>
   </header>
 
   <span id="saved">Saved</span>
@@ -298,15 +299,15 @@
       <input class="text" id="email" type="email" placeholder="you@example.com">
     </div>
     <div class="field" data-sec="Contact & Social" data-label="WhatsApp">
-      <label class="q" for="whatsapp">WhatsApp</label>
+      <label class="q" for="whatsapp">WhatsApp <span class="tag">optional 选填</span></label>
       <input class="text" id="whatsapp" type="text" placeholder="+1 …">
     </div>
     <div class="field" data-sec="Contact & Social" data-label="WeChat">
-      <label class="q" for="wechat">WeChat</label>
+      <label class="q" for="wechat">WeChat <span class="tag">optional 选填</span></label>
       <input class="text" id="wechat" type="text" placeholder="微信号">
     </div>
     <div class="field" data-sec="Contact & Social" data-label="Instagram or other">
-      <label class="q" for="insta">Instagram / other</label>
+      <label class="q" for="insta">Instagram / other <span class="tag">optional 选填</span></label>
       <input class="text" id="insta" type="text" placeholder="@handle">
     </div>
   </section>
