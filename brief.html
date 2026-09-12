@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lisa Dee Website Brief</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <style>
+    :root{
+      --bg:#FBF7EF;
+      --surface:#FFFFFF;
+      --ink:#1B2340;
+      --muted:#6B6E85;
+      --line:#E8E0D0;
+      --brand:#141F4D;
+      --brand-ink:#FDFBF7;
+      --accent:#A9803C;
+      --gold:#E4C891;
+      --focus:#A9803C;
+    }
+    @media (prefers-color-scheme: dark){
+      :root:not([data-theme="light"]){
+        --bg:#0C1330;
+        --surface:#131B3E;
+        --ink:#F3EBDD;
+        --muted:#A6ACC6;
+        --line:#2A3358;
+        --brand:#1D2A5C;
+        --brand-ink:#FDFBF7;
+        --accent:#E4C891;
+        --gold:#E4C891;
+        --focus:#E4C891;
+      }
+    }
+    :root[data-theme="dark"]{
+      --bg:#0C1330;
+      --surface:#131B3E;
+      --ink:#F3EBDD;
+      --muted:#A6ACC6;
+      --line:#2A3358;
+      --brand:#1D2A5C;
+      --brand-ink:#FDFBF7;
+      --accent:#E4C891;
+      --gold:#E4C891;
+      --focus:#E4C891;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ -webkit-text-size-adjust:100%; }
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      line-height:1.55;
+      font-size:15px;
+    }
+
+    .wrap{ max-width:720px; margin:0 auto; padding:48px 20px 96px; }
+
+    /* Header */
+    .header{ text-align:center; margin-bottom:40px; }
+    .eyebrow{
+      font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase;
+      color:var(--accent); margin:0 0 14px;
+    }
+    .brand-lockup{ display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:20px; }
+    .brand-mark{ width:40px; height:40px; display:grid; place-items:center; flex:none; }
+    .brand-mark::before{ content:"◆"; font-size:22px; line-height:1; color:var(--gold); }
+    .brand-name{
+      font-family:'Fraunces', Georgia, 'Times New Roman', serif;
+      font-weight:600; font-size:26px; line-height:1.05; text-align:left;
+    }
+    .brand-name em{ font-style:italic; font-weight:500; color:var(--accent); }
+    h1{
+      font-family:'Fraunces', Georgia, 'Times New Roman', serif;
+      font-weight:600; font-size:34px; line-height:1.12; margin:0 0 10px;
+      text-wrap:balance; letter-spacing:-.01em;
+    }
+    .lede{ color:var(--muted); max-width:52ch; margin:0 auto; font-size:15px; }
+
+    /* Saved pill */
+    #saved{
+      position:fixed; top:16px; right:16px; z-index:10;
+      background:var(--surface); color:var(--muted);
+      border:1px solid var(--line); border-radius:999px;
+      padding:7px 14px; font-size:12.5px; font-weight:500;
+      display:flex; align-items:center; gap:6px;
+      opacity:0; transform:translateY(-6px); transition:opacity .25s, transform .25s;
+      pointer-events:none;
+    }
+    #saved::before{ content:"●"; color:#3C9A6B; font-size:9px; }
+    #saved.show{ opacity:1; transform:translateY(0); }
+
+    /* Sections */
+    .sec{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:28px 28px 8px;
+      margin-bottom:20px;
+    }
+    .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:22px; padding-bottom:14px; border-bottom:1px solid var(--line); }
+    .sec-num{
+      font-family:'Fraunces', Georgia, serif; font-weight:600; font-size:15px;
+      color:var(--brand-ink); background:var(--brand);
+      width:28px; height:28px; border-radius:8px; display:grid; place-items:center; flex:none;
+    }
+    .sec-title{
+      font-family:'Fraunces', Georgia, serif; font-weight:600; font-size:21px; margin:0;
+      letter-spacing:-.01em;
+    }
+    .sec-cn{ color:var(--muted); font-size:13px; margin-left:auto; }
+
+    /* Fields */
+    .field{ margin-bottom:24px; }
+    .q{ display:block; font-weight:600; font-size:15px; margin-bottom:3px; }
+    .hint{ display:block; font-weight:400; font-size:12.5px; color:var(--muted); margin-bottom:10px; }
+
+    .opts{ display:flex; flex-wrap:wrap; gap:8px; }
+    .opt{ position:relative; cursor:pointer; }
+    .opt input{ position:absolute; opacity:0; width:1px; height:1px; }
+    .opt span{
+      display:inline-flex; align-items:center; padding:9px 15px;
+      border:1px solid var(--line); border-radius:999px;
+      background:transparent; color:var(--ink);
+      font-size:14px; font-weight:500; transition:background .15s, color .15s, border-color .15s;
+    }
+    .opt:hover span{ border-color:var(--accent); }
+    .opt input:checked + span{ background:var(--brand); border-color:var(--brand); color:var(--brand-ink); }
+    .opt input:focus-visible + span{ outline:2px solid var(--focus); outline-offset:2px; }
+
+    .text, textarea{
+      width:100%; padding:12px 14px; font:inherit; font-size:14.5px;
+      color:var(--ink); background:var(--bg);
+      border:1px solid var(--line); border-radius:10px;
+      transition:border-color .15s, box-shadow .15s;
+    }
+    .text::placeholder, textarea::placeholder{ color:var(--muted); opacity:.75; }
+    .text:focus, textarea:focus{
+      outline:none; border-color:var(--accent);
+      box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+    }
+    textarea{ resize:vertical; min-height:92px; line-height:1.6; }
+
+    /* Action bar */
+    .actions{
+      background:var(--brand); color:var(--brand-ink);
+      border-radius:16px; padding:24px 24px 26px; text-align:center;
+    }
+    .actions h2{
+      font-family:'Fraunces', Georgia, serif; font-weight:600; font-size:19px; margin:0 0 6px;
+    }
+    .actions p{ color:color-mix(in srgb, var(--brand-ink) 72%, transparent); font-size:13.5px; margin:0 0 20px; }
+    .btn{
+      font-family:inherit; font-size:15px; font-weight:600; cursor:pointer;
+      border:none; border-radius:999px; padding:13px 26px;
+      transition:transform .1s, background .15s, opacity .15s;
+    }
+    .btn:active{ transform:translateY(1px); }
+    .btn-primary{ background:var(--gold); color:var(--brand); }
+    .btn-primary:hover{ background:color-mix(in srgb, var(--gold) 88%, white); }
+    .btn-ghost{
+      background:transparent; color:var(--brand-ink);
+      border:1px solid color-mix(in srgb, var(--brand-ink) 30%, transparent);
+      margin-left:10px;
+    }
+    .btn-ghost:hover{ border-color:var(--brand-ink); }
+
+    @media (max-width:520px){
+      .wrap{ padding:36px 14px 72px; }
+      .sec{ padding:22px 18px 6px; }
+      h1{ font-size:29px; }
+      .brand-name{ font-size:22px; }
+      .btn-primary{ width:100%; }
+      .btn-ghost{ width:100%; margin-left:0; margin-top:10px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="header">
+    <p class="eyebrow">Heritage Luxury Finds · Lisa Dee</p>
+    <div class="brand-lockup">
+      <span class="brand-mark"></span>
+      <span class="brand-name"><em>Luxury Finds</em> by Lisa Dee</span>
+    </div>
+    <h1>Website requirements</h1>
+    <p class="lede">Fill this in once, then tap <strong>Copy my answers</strong> at the bottom and paste it back to us. Everything saves automatically as you type — no need to finish in one sitting.</p>
+  </header>
+
+  <span id="saved">Saved</span>
+
+  <!-- 1 -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">1</span><h2 class="sec-title">Ordering &amp; Payment</h2><span class="sec-cn">下单与支付</span></div>
+
+    <div class="field" data-sec="Ordering & Payment" data-label="How customers buy">
+      <span class="q">How should customers buy?</span>
+      <span class="hint">在线支付 or 联系下单</span>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="buy" value="Online checkout (PayPal)"><span>Online checkout (PayPal)</span></label>
+        <label class="opt"><input type="radio" name="buy" value="Contact to order"><span>Contact to order</span></label>
+        <label class="opt"><input type="radio" name="buy" value="Both"><span>Both</span></label>
+      </div>
+    </div>
+
+    <div class="field" data-sec="Ordering & Payment" data-label="Payment methods">
+      <span class="q">Which payment methods should we list?</span>
+      <span class="hint">勾选所有适用项</span>
+      <div class="opts">
+        <label class="opt"><input type="checkbox" value="PayPal"><span>PayPal</span></label>
+        <label class="opt"><input type="checkbox" value="Venmo"><span>Venmo</span></label>
+        <label class="opt"><input type="checkbox" value="Zelle"><span>Zelle</span></label>
+        <label class="opt"><input type="checkbox" value="Bank transfer"><span>Bank transfer</span></label>
+        <label class="opt"><input type="checkbox" value="WeChat Pay"><span>WeChat Pay</span></label>
+        <label class="opt"><input type="checkbox" value="Alipay"><span>Alipay</span></label>
+      </div>
+    </div>
+
+    <div class="field" data-sec="Ordering & Payment" data-label="Other payment method">
+      <label class="q" for="otherpay">Other payment method <span class="hint" style="margin-bottom:0">其他支付方式（选填）</span></label>
+      <input class="text" id="otherpay" type="text" placeholder="e.g. Cash App, wire…">
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">2</span><h2 class="sec-title">Collections &amp; Products</h2><span class="sec-cn">系列与商品</span></div>
+
+    <div class="field" data-sec="Collections & Products" data-label="Clover Collection pieces">
+      <label class="q" for="clover">Clover Collection — list the pieces</label>
+      <span class="hint">每行一个：名称 · 价格 · 一句话说明</span>
+      <textarea id="clover" placeholder="Clover pendant necklace — $48 — gold, 18k plated&#10;Clover stud earrings — $36 — gold tone"></textarea>
+    </div>
+
+    <div class="field" data-sec="Collections & Products" data-label="Carti Collection pieces">
+      <label class="q" for="carti">Carti Collection — list the pieces</label>
+      <span class="hint">每行一个：名称 · 价格 · 一句话说明</span>
+      <textarea id="carti" placeholder="Carti ring — $42 — gold tone&#10;Carti bangle — $58 — gold tone"></textarea>
+    </div>
+
+    <div class="field" data-sec="Collections & Products" data-label="CC Collection pieces">
+      <label class="q" for="cc">CC Collection — list the pieces</label>
+      <span class="hint">每行一个：名称 · 价格 · 一句话说明</span>
+      <textarea id="cc" placeholder="CC hoop earrings — $40 — gold tone&#10;CC drop earrings — $52 — gold tone"></textarea>
+    </div>
+
+    <div class="field" data-sec="Collections & Products" data-label="Total pieces roughly">
+      <label class="q" for="total">How many pieces in total, roughly?</label>
+      <span class="hint">大致数量</span>
+      <input class="text" id="total" type="text" placeholder="e.g. 12–15">
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">3</span><h2 class="sec-title">Pricing &amp; Photos</h2><span class="sec-cn">价格与图片</span></div>
+
+    <div class="field" data-sec="Pricing & Photos" data-label="Currency">
+      <label class="q" for="currency">Currency</label>
+      <span class="hint">币种</span>
+      <input class="text" id="currency" type="text" value="USD" placeholder="e.g. USD">
+    </div>
+
+    <div class="field" data-sec="Pricing & Photos" data-label="Price shown to customers">
+      <span class="q">Which price should customers see?</span>
+      <span class="hint">零售 or 批发</span>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="price" value="Retail price"><span>Retail price</span></label>
+        <label class="opt"><input type="radio" name="price" value="Wholesale price"><span>Wholesale price</span></label>
+        <label class="opt"><input type="radio" name="price" value="Both — show one, quote the other"><span>Both — show one, quote the other</span></label>
+      </div>
+    </div>
+
+    <div class="field" data-sec="Pricing & Photos" data-label="Product photos ready">
+      <span class="q">Do you have product photos ready?</span>
+      <span class="hint">商品图是否已备好</span>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="photos" value="Yes — I'll send them"><span>Yes — I'll send them</span></label>
+        <label class="opt"><input type="radio" name="photos" value="Not yet"><span>Not yet</span></label>
+        <label class="opt"><input type="radio" name="photos" value="Use a placeholder for now"><span>Use a placeholder for now</span></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">4</span><h2 class="sec-title">Contact &amp; Social</h2><span class="sec-cn">联系方式</span></div>
+
+    <div class="field" data-sec="Contact & Social" data-label="Email">
+      <label class="q" for="email">Email</label>
+      <input class="text" id="email" type="email" placeholder="you@example.com">
+    </div>
+    <div class="field" data-sec="Contact & Social" data-label="WhatsApp">
+      <label class="q" for="whatsapp">WhatsApp</label>
+      <input class="text" id="whatsapp" type="text" placeholder="+1 …">
+    </div>
+    <div class="field" data-sec="Contact & Social" data-label="WeChat">
+      <label class="q" for="wechat">WeChat</label>
+      <input class="text" id="wechat" type="text" placeholder="微信号">
+    </div>
+    <div class="field" data-sec="Contact & Social" data-label="Instagram or other">
+      <label class="q" for="insta">Instagram / other</label>
+      <input class="text" id="insta" type="text" placeholder="@handle">
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">5</span><h2 class="sec-title">Brand &amp; Story</h2><span class="sec-cn">品牌文案</span></div>
+
+    <div class="field" data-sec="Brand & Story" data-label="About the brand">
+      <label class="q" for="about">A line or two about the brand — and you</label>
+      <span class="hint">用于 About 区块 · 你是谁、卖什么、为什么</span>
+      <textarea id="about" placeholder="e.g. Heritage Luxury Finds is a curated edit of preloved designer handbags and fine jewelry, hand-selected by Lisa Dee…"></textarea>
+    </div>
+
+    <div class="field" data-sec="Brand & Story" data-label="Tagline">
+      <label class="q" for="tagline">Tagline</label>
+      <span class="hint">品牌口号（已默认）</span>
+      <input class="text" id="tagline" type="text" value="Luxury Finds by Lisa Dee" placeholder="Luxury Finds by Lisa Dee">
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">6</span><h2 class="sec-title">Shipping &amp; Returns</h2><span class="sec-cn">物流与退换</span></div>
+
+    <div class="field" data-sec="Shipping & Returns" data-label="Shipping regions">
+      <label class="q" for="regions">Where do you ship?</label>
+      <span class="hint">发货地区</span>
+      <input class="text" id="regions" type="text" placeholder="e.g. US only · Worldwide">
+    </div>
+    <div class="field" data-sec="Shipping & Returns" data-label="Shipping time">
+      <label class="q" for="shiptime">Shipping time</label>
+      <span class="hint">备货 + 配送时长</span>
+      <input class="text" id="shiptime" type="text" placeholder="e.g. 1–2 days to prepare · 10–20 days international">
+    </div>
+    <div class="field" data-sec="Shipping & Returns" data-label="Return policy">
+      <label class="q" for="returns">Return / exchange policy</label>
+      <span class="hint">退换政策（无则写 None）</span>
+      <textarea id="returns" placeholder="e.g. 14-day returns, unworn…"></textarea>
+    </div>
+  </section>
+
+  <!-- Actions -->
+  <div class="actions">
+    <h2>Done?</h2>
+    <p>Tap the button, then paste the copied text back in our chat.</p>
+    <button class="btn btn-primary" id="copyBtn" type="button">Copy my answers</button>
+    <button class="btn btn-ghost" id="clearBtn" type="button">Clear all</button>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var fields = Array.prototype.slice.call(document.querySelectorAll('.field'));
+  var KEY = 'lisa-dee-requirements-v1';
+
+  function read(){
+    var d = {};
+    fields.forEach(function(f){
+      var key = f.getAttribute('data-label');
+      var radios = f.querySelectorAll('input[type=radio]');
+      if(radios.length){
+        var c = f.querySelector('input[type=radio]:checked');
+        if(c) d[key] = {type:'radio', value:c.value};
+        return;
+      }
+      var checks = f.querySelectorAll('input[type=checkbox]');
+      if(checks.length){
+        d[key] = {type:'check', value: Array.prototype.map.call(checks, function(c){ return c.checked ? c.value : null; }).filter(Boolean)};
+        return;
+      }
+      var t = f.querySelector('input[type=text], input[type=email], textarea');
+      if(t) d[key] = {type:'text', value:t.value};
+    });
+    return d;
+  }
+
+  function save(){
+    try{ localStorage.setItem(KEY, JSON.stringify(read())); }catch(e){}
+    var pill = document.getElementById('saved');
+    pill.classList.add('show');
+    clearTimeout(save._t);
+    save._t = setTimeout(function(){ pill.classList.remove('show'); }, 1500);
+  }
+
+  function restore(){
+    var raw; try{ raw = localStorage.getItem(KEY); }catch(e){}
+    if(!raw) return;
+    var d; try{ d = JSON.parse(raw); }catch(e){ return; }
+    fields.forEach(function(f){
+      var key = f.getAttribute('data-label');
+      if(!d[key]) return;
+      if(d[key].type === 'radio'){
+        var r = f.querySelector('input[type=radio][value="' + d[key].value + '"]');
+        if(r) r.checked = true;
+      } else if(d[key].type === 'check'){
+        var vals = d[key].value || [];
+        f.querySelectorAll('input[type=checkbox]').forEach(function(c){ c.checked = vals.indexOf(c.value) > -1; });
+      } else {
+        var t = f.querySelector('input[type=text], input[type=email], textarea');
+        if(t) t.value = d[key].value;
+      }
+    });
+  }
+
+  document.addEventListener('input', save);
+  document.addEventListener('change', save);
+
+  function getValue(f){
+    var radios = f.querySelectorAll('input[type=radio]');
+    if(radios.length){ var c = f.querySelector('input[type=radio]:checked'); return c ? c.value : ''; }
+    var checks = f.querySelectorAll('input[type=checkbox]');
+    if(checks.length){ return Array.prototype.map.call(checks, function(c){ return c.checked ? c.value : null; }).filter(Boolean).join(', '); }
+    var t = f.querySelector('input[type=text], input[type=email], textarea');
+    return t ? t.value.trim() : '';
+  }
+
+  var copyBtn = document.getElementById('copyBtn');
+  copyBtn.addEventListener('click', function(){
+    var out = 'LISA DEE — WEBSITE REQUIREMENTS\n';
+    out += '========================================\n';
+    var lastSec = null;
+    fields.forEach(function(f){
+      var sec = f.getAttribute('data-sec');
+      if(sec !== lastSec){
+        out += '\n' + sec.toUpperCase() + '\n' + new Array(sec.length + 1).join('-') + '\n';
+        lastSec = sec;
+      }
+      var label = f.getAttribute('data-label');
+      var val = getValue(f);
+      out += '• ' + label + ': ' + (val || '—') + '\n';
+    });
+    out += '\n';
+    copyText(out);
+  });
+
+  function copyText(text){
+    function done(){
+      copyBtn.textContent = 'Copied ✓';
+      setTimeout(function(){ copyBtn.textContent = 'Copy my answers'; }, 1800);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done).catch(function(){ fallback(); });
+    } else { fallback(); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); }catch(e){}
+      document.body.removeChild(ta); done();
+    }
+  }
+
+  var clearBtn = document.getElementById('clearBtn');
+  clearBtn.addEventListener('click', function(){
+    if(!confirm('Clear all answers? This can\'t be undone.')) return;
+    fields.forEach(function(f){
+      f.querySelectorAll('input[type=radio], input[type=checkbox]').forEach(function(i){ i.checked = false; });
+      var t = f.querySelector('input[type=text], input[type=email], textarea');
+      if(t) t.value = '';
+    });
+    try{ localStorage.removeItem(KEY); }catch(e){}
+    save();
+  });
+
+  restore();
+})();
+</script>
+</body>
+</html>
