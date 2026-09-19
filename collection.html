@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Collection — Heritage Luxury Finds</title>
-  <link rel="stylesheet" href="css/style.css?v=17">
+  <link rel="stylesheet" href="css/style.css?v=18">
 </head>
 <body>
 
@@ -98,27 +98,14 @@
 </footer>
 
 <!-- ====== JS ====== -->
+<script src="js/products.js?v=1"></script>
 <script>
-// Collection definitions — category filters per collection
 const COLLECTIONS = {
-  clover: {
-    name: 'Clover Collection',
-    sub: 'Necklaces, bracelets, rings & earrings',
-    categories: ['Necklace', 'Bracelet', 'Ring', 'Earring']
-  },
-  carti: {
-    name: 'Carti Collection',
-    sub: 'Rings & bangles',
-    categories: ['Ring', 'Bangle']
-  },
-  cc: {
-    name: 'CC Collection',
-    sub: 'Earrings',
-    categories: ['Earring']
-  }
+  clover: { name: 'Clover Collection', sub: 'Necklaces & bracelets' },
+  carti: { name: 'Carti Collection', sub: 'Bangles' },
+  cc: { name: 'CC Collection', sub: 'Earrings' }
 };
 
-// Read ?c=clover | ?c=carti | ?c=cc (default: clover)
 const params = new URLSearchParams(window.location.search);
 const key = COLLECTIONS[params.get('c')] ? params.get('c') : 'clover';
 const col = COLLECTIONS[key];
@@ -127,9 +114,11 @@ document.title = col.name + ' — Heritage Luxury Finds';
 document.getElementById('colTitle').textContent = col.name;
 document.getElementById('colSub').textContent = col.sub;
 
-// Build category filter pills (All + categories)
+const products = window.PRODUCTS.filter(p => p.collection === key);
+const categories = [...new Set(products.map(p => p.category))];
+
 const filter = document.getElementById('catFilter');
-['All', ...col.categories].forEach(cat => {
+['All', ...categories].forEach(cat => {
   const b = document.createElement('button');
   b.className = 'cat-pill' + (cat === 'All' ? ' active' : '');
   b.textContent = cat;
@@ -137,24 +126,18 @@ const filter = document.getElementById('catFilter');
   filter.appendChild(b);
 });
 
-// Build placeholder products — 4 per category
-const products = [];
-col.categories.forEach(cat => {
-  for (let i = 1; i <= 4; i++) {
-    products.push({ cat, name: cat + ' ' + i });
-  }
-});
+function card(p) {
+  return '<a href="product.html?id=' + p.id + '" class="product-card">' +
+    '<div class="card-img"><img src="' + p.image + '" alt="' + p.name + '" loading="lazy"></div>' +
+    '<p class="card-name">' + p.name + '</p>' +
+    '<p class="card-price">$' + p.price.toFixed(2) + '</p>' +
+    '<span class="card-btn">Add</span>' +
+  '</a>';
+}
 
 function render(cat) {
-  const list = cat === 'All' ? products : products.filter(p => p.cat === cat);
-  document.getElementById('productGrid').innerHTML = list.map(p =>
-    '<a href="product.html" class="product-card">' +
-      '<div class="card-img"><img src="images/placeholder.svg" alt="' + p.name + '"></div>' +
-      '<p class="card-name">' + p.name + '</p>' +
-      '<p class="card-price">$0.00</p>' +
-      '<span class="card-btn">Add</span>' +
-    '</a>'
-  ).join('');
+  const list = cat === 'All' ? products : products.filter(p => p.category === cat);
+  document.getElementById('productGrid').innerHTML = list.map(card).join('');
 }
 
 filter.addEventListener('click', e => {

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Heritage Luxury Finds — Luxury Finds by Lisa Dee</title>
-  <link rel="stylesheet" href="css/style.css?v=17">
+  <link rel="stylesheet" href="css/style.css?v=18">
 </head>
 <body>
 
@@ -83,14 +83,14 @@
       <img src="images/hero-2.png" alt="Clover Collection">
       <div class="col-label">
         <span class="col-name">Clover Collection</span>
-        <span class="col-count">Necklace · Bracelet · Ring · Earring</span>
+        <span class="col-count">Necklace · Bracelet</span>
       </div>
     </a>
     <a href="collection.html?c=carti" class="collection-tile">
       <img src="images/hero-3.png" alt="Carti Collection">
       <div class="col-label">
         <span class="col-name">Carti Collection</span>
-        <span class="col-count">Ring · Bangle</span>
+        <span class="col-count">Bangle</span>
       </div>
     </a>
     <a href="collection.html?c=cc" class="collection-tile">
@@ -118,33 +118,23 @@
 <section class="section" id="catalog">
   <h2 class="section-title">New This Season</h2>
   <p class="section-sub">Fresh arrivals, hand-selected for you</p>
-  <div class="product-grid">
-    <a href="product.html" class="product-card">
-      <div class="card-img"><img src="images/placeholder.svg" alt="Product"></div>
-      <p class="card-name">Product name</p>
-      <p class="card-price">$0.00</p>
-      <span class="card-btn">Add</span>
-    </a>
-    <a href="product.html" class="product-card">
-      <div class="card-img"><img src="images/placeholder.svg" alt="Product"></div>
-      <p class="card-name">Product name</p>
-      <p class="card-price">$0.00</p>
-      <span class="card-btn">Add</span>
-    </a>
-    <a href="product.html" class="product-card">
-      <div class="card-img"><img src="images/placeholder.svg" alt="Product"></div>
-      <p class="card-name">Product name</p>
-      <p class="card-price">$0.00</p>
-      <span class="card-btn">Add</span>
-    </a>
-    <a href="product.html" class="product-card">
-      <div class="card-img"><img src="images/placeholder.svg" alt="Product"></div>
-      <p class="card-name">Product name</p>
-      <p class="card-price">$0.00</p>
-      <span class="card-btn">Add</span>
-    </a>
-  </div>
+  <div class="product-grid" id="homeGrid"></div>
 </section>
+
+<script src="js/products.js?v=1"></script>
+<script>
+(function() {
+  const grid = document.getElementById('homeGrid');
+  grid.innerHTML = window.PRODUCTS.map(function(p) {
+    return '<a href="product.html?id=' + p.id + '" class="product-card">' +
+      '<div class="card-img"><img src="' + p.image + '" alt="' + p.name + '" loading="lazy"></div>' +
+      '<p class="card-name">' + p.name + '</p>' +
+      '<p class="card-price">$' + p.price.toFixed(2) + '</p>' +
+      '<span class="card-btn">Add</span>' +
+    '</a>';
+  }).join('');
+})();
+</script>
 
 <!-- ====== Promo / Brand Banner ====== -->
 <section class="promo">

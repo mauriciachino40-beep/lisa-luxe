@@ -684,6 +684,28 @@ button { cursor: pointer; font-family: inherit; }
 }
 .pdp-add:hover { background: #1E2B66; }
 
+/* Variant selector */
+.variant-group { margin-top: 18px; }
+.variant-label {
+  display: block;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--gray-600);
+  margin-bottom: 9px;
+}
+.variant-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.variant-pill {
+  padding: 9px 16px;
+  border: 1px solid var(--gray-200);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--navy);
+  font-size: 13px;
+  transition: all .15s;
+}
+.variant-pill:hover { border-color: var(--navy); }
+.variant-pill.active { background: var(--navy); border-color: var(--navy); color: var(--cream); }
+
 .pdp-desc {
   margin-top: 24px;
   font-size: 15px;
