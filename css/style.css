@@ -713,6 +713,82 @@ button { cursor: pointer; font-family: inherit; }
   line-height: 1.7;
 }
 
+/* Payment row */
+.pdp-payment {
+  margin-top: 16px;
+  text-align: center;
+}
+.pdp-payment .pay-methods {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--navy);
+}
+.pdp-payment p {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--gray-400);
+}
+
+/* Trust badges */
+.pdp-trust {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  text-align: center;
+}
+.pdp-trust-item {
+  padding: 12px 6px;
+  background: var(--gray-100);
+  border-radius: 4px;
+  font-size: 11px;
+  letter-spacing: .5px;
+  color: var(--gray-600);
+  line-height: 1.4;
+}
+.pdp-trust-item .ti {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 5px;
+  color: var(--gold);
+}
+
+/* Volume discount */
+.pdp-volume {
+  margin-top: 18px;
+  padding: 16px 18px;
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  background: #FBF6EC;
+}
+.vol-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+.vol-tiers {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.vol-tier {
+  padding: 6px 12px;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  background: #fff;
+  font-size: 12px;
+  color: var(--navy);
+}
+.vol-note {
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--gray-400);
+}
+
 /* Selling points */
 .pdp-sell {
   margin-top: 24px;
