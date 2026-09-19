@@ -4,9 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Heritage Luxury Finds — Luxury Finds by Lisa Dee</title>
-  <link rel="stylesheet" href="css/style.css?v=18">
+  <link rel="stylesheet" href="css/style.css?v=19">
 </head>
 <body>
+
+<!-- ====== Announcement ====== -->
+<div class="announce">Luxury Finds by Lisa Dee &middot; Hand-selected jewelry &amp; accessories</div>
 
 <!-- ====== Navigation ====== -->
 <header class="nav">
@@ -121,7 +124,7 @@
   <div class="product-grid" id="homeGrid"></div>
 </section>
 
-<script src="js/products.js?v=1"></script>
+<script src="js/products.js?v=2"></script>
 <script>
 (function() {
   const grid = document.getElementById('homeGrid');
@@ -130,7 +133,7 @@
       '<div class="card-img"><img src="' + p.image + '" alt="' + p.name + '" loading="lazy"></div>' +
       '<p class="card-name">' + p.name + '</p>' +
       '<p class="card-price">$' + p.price.toFixed(2) + '</p>' +
-      '<span class="card-btn">Add</span>' +
+      '<span class="card-btn">View Details</span>' +
     '</a>';
   }).join('');
 })();
@@ -143,6 +146,24 @@
 
 <!-- ====== Footer ====== -->
 <footer class="footer" id="contact">
+  <div class="service-badges">
+    <div class="service-badge">
+      <div class="sb-title">Hand-Finished</div>
+      <div class="sb-sub">Plated &amp; inspected with care</div>
+    </div>
+    <div class="service-badge">
+      <div class="sb-title">Secure Checkout</div>
+      <div class="sb-sub">Encrypted &amp; safe</div>
+    </div>
+    <div class="service-badge">
+      <div class="sb-title">Ships US &amp; Canada</div>
+      <div class="sb-sub">Prepared within 3 days</div>
+    </div>
+    <div class="service-badge">
+      <div class="sb-title">Customer Care</div>
+      <div class="sb-sub">Email &middot; WhatsApp &middot; Instagram</div>
+    </div>
+  </div>
   <div class="footer-inner">
     <div class="footer-brand">
       <img src="images/logo-mark-cream.png" alt="Heritage Luxury Finds">

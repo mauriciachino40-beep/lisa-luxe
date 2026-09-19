@@ -4,9 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Collection — Heritage Luxury Finds</title>
-  <link rel="stylesheet" href="css/style.css?v=18">
+  <link rel="stylesheet" href="css/style.css?v=19">
 </head>
 <body>
+
+<!-- ====== Announcement ====== -->
+<div class="announce">Luxury Finds by Lisa Dee &middot; Hand-selected jewelry &amp; accessories</div>
 
 <!-- ====== Navigation ====== -->
 <header class="nav">
@@ -50,11 +53,29 @@
   </div>
 </header>
 
+<!-- ====== Breadcrumb ====== -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="index.html">Home</a><span>/</span>
+  <a href="index.html#collections">Collections</a><span>/</span>
+  <span id="crumbCurrent">Collection</span>
+</nav>
+
 <!-- ====== Collection Header ====== -->
 <section class="collection-header">
   <h1 class="collection-title" id="colTitle">Collection</h1>
   <p class="collection-sub" id="colSub"></p>
 </section>
+
+<!-- ====== Sort bar ====== -->
+<div class="sort-bar">
+  <span class="sort-count" id="sortCount"></span>
+  <select id="sortSelect" class="sort-select" aria-label="Sort products">
+    <option value="featured">Sort: Featured</option>
+    <option value="price-asc">Price: Low to High</option>
+    <option value="price-desc">Price: High to Low</option>
+    <option value="name-asc">Name: A to Z</option>
+  </select>
+</div>
 
 <!-- ====== Category Filter ====== -->
 <div class="cat-filter" id="catFilter"></div>
@@ -64,8 +85,45 @@
   <div class="product-grid" id="productGrid"></div>
 </section>
 
+<!-- ====== Shop More Categories ====== -->
+<section class="shop-more">
+  <h2 class="shop-more-title">Shop More Categories</h2>
+  <div class="shop-more-grid">
+    <a href="collection.html?c=clover" class="shop-more-tile">
+      <img src="images/hero-2.png" alt="Clover Collection">
+      <span class="shop-more-label">Clover</span>
+    </a>
+    <a href="collection.html?c=carti" class="shop-more-tile">
+      <img src="images/hero-3.png" alt="Carti Collection">
+      <span class="shop-more-label">Carti</span>
+    </a>
+    <a href="collection.html?c=cc" class="shop-more-tile">
+      <img src="images/hero-1.png" alt="CC Collection">
+      <span class="shop-more-label">CC</span>
+    </a>
+  </div>
+</section>
+
 <!-- ====== Footer ====== -->
 <footer class="footer" id="contact">
+  <div class="service-badges">
+    <div class="service-badge">
+      <div class="sb-title">Hand-Finished</div>
+      <div class="sb-sub">Plated &amp; inspected with care</div>
+    </div>
+    <div class="service-badge">
+      <div class="sb-title">Secure Checkout</div>
+      <div class="sb-sub">Encrypted &amp; safe</div>
+    </div>
+    <div class="service-badge">
+      <div class="sb-title">Ships US &amp; Canada</div>
+      <div class="sb-sub">Prepared within 3 days</div>
+    </div>
+    <div class="service-badge">
+      <div class="sb-title">Customer Care</div>
+      <div class="sb-sub">Email &middot; WhatsApp &middot; Instagram</div>
+    </div>
+  </div>
   <div class="footer-inner">
     <div class="footer-brand">
       <img src="images/logo-mark-cream.png" alt="Heritage Luxury Finds">
@@ -98,7 +156,7 @@
 </footer>
 
 <!-- ====== JS ====== -->
-<script src="js/products.js?v=1"></script>
+<script src="js/products.js?v=2"></script>
 <script>
 const COLLECTIONS = {
   clover: { name: 'Clover Collection', sub: 'Necklaces & bracelets' },
@@ -113,9 +171,12 @@ const col = COLLECTIONS[key];
 document.title = col.name + ' — Heritage Luxury Finds';
 document.getElementById('colTitle').textContent = col.name;
 document.getElementById('colSub').textContent = col.sub;
+document.getElementById('crumbCurrent').textContent = col.name;
 
 const products = window.PRODUCTS.filter(p => p.collection === key);
 const categories = [...new Set(products.map(p => p.category))];
+let activeCat = 'All';
+let sort = 'featured';
 
 const filter = document.getElementById('catFilter');
 ['All', ...categories].forEach(cat => {
@@ -131,13 +192,23 @@ function card(p) {
     '<div class="card-img"><img src="' + p.image + '" alt="' + p.name + '" loading="lazy"></div>' +
     '<p class="card-name">' + p.name + '</p>' +
     '<p class="card-price">$' + p.price.toFixed(2) + '</p>' +
-    '<span class="card-btn">Add</span>' +
+    '<span class="card-btn">View Details</span>' +
   '</a>';
 }
 
-function render(cat) {
-  const list = cat === 'All' ? products : products.filter(p => p.category === cat);
-  document.getElementById('productGrid').innerHTML = list.map(card).join('');
+function sorted(list) {
+  const arr = list.slice();
+  if (sort === 'price-asc') arr.sort((a, b) => a.price - b.price);
+  if (sort === 'price-desc') arr.sort((a, b) => b.price - a.price);
+  if (sort === 'name-asc') arr.sort((a, b) => a.name.localeCompare(b.name));
+  return arr;
+}
+
+function render() {
+  const list = activeCat === 'All' ? products : products.filter(p => p.category === activeCat);
+  const arr = sorted(list);
+  document.getElementById('productGrid').innerHTML = arr.map(card).join('');
+  document.getElementById('sortCount').textContent = 'Showing ' + arr.length + ' of ' + products.length + ' products';
 }
 
 filter.addEventListener('click', e => {
@@ -145,10 +216,16 @@ filter.addEventListener('click', e => {
   if (!pill) return;
   filter.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
   pill.classList.add('active');
-  render(pill.dataset.cat);
+  activeCat = pill.dataset.cat;
+  render();
 });
 
-render('All');
+document.getElementById('sortSelect').addEventListener('change', e => {
+  sort = e.target.value;
+  render();
+});
+
+render();
 </script>
 <script>
 function toggleMenu() {
