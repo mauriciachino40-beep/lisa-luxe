@@ -87,14 +87,26 @@
       <div class="pdp-trust-item"><span class="ti">&#10003;</span>14-Day Guarantee</div>
     </div>
 
-    <div class="pdp-volume">
-      <p class="vol-title">Buy more, save more</p>
-      <div class="vol-tiers">
-        <span class="vol-tier">2 pcs &mdash; 10% off</span>
-        <span class="vol-tier">3 pcs &mdash; 15% off</span>
-        <span class="vol-tier">5+ pcs &mdash; 25% off</span>
+    <div class="cts">
+      <div class="cts__box">
+        <div class="cts__head"><span>Complete the Set</span></div>
+        <div class="cts__progress">
+          <div class="cts__track">
+            <div class="cts__fill" id="ctsFill"></div>
+            <span class="cts__dot" data-qty="2" style="left:33.33%"></span>
+            <span class="cts__dot" data-qty="3" style="left:66.67%"></span>
+            <span class="cts__dot" data-qty="5" style="left:100%"></span>
+          </div>
+          <div class="cts__ticks">
+            <span class="cts__tick" style="left:33.33%">2 &middot; 10% off</span>
+            <span class="cts__tick" style="left:66.67%">3 &middot; 15% off</span>
+            <span class="cts__tick" style="left:100%">5 &middot; 25% off</span>
+          </div>
+          <p class="cts__hint" id="ctsHint">Add 2 items to unlock 10% off.</p>
+        </div>
+        <ul class="cts__list" id="ctsList"></ul>
+        <button class="cts__addall" id="ctsAddAll" type="button">Add All to Set</button>
       </div>
-      <p class="vol-note">Discount applied at checkout</p>
     </div>
 
     <p class="pdp-desc" id="pdpDesc">A hand-finished clover motif, plated in soft gold and made for everyday wear.</p>
@@ -286,6 +298,78 @@
       '<span class="card-btn">View Details</span>' +
     '</a>';
   }).join('');
+
+  // Complete the Set
+  const TIERS = [{ qty: 2, pct: 10 }, { qty: 3, pct: 15 }, { qty: 5, pct: 25 }];
+  const others = window.PRODUCTS.filter(p => p.collection === product.collection && p.id !== product.id);
+  const set = (others.length >= 3 ? others : window.PRODUCTS.filter(p => p.id !== product.id)).slice(0, 3);
+  document.getElementById('ctsList').innerHTML = set.map(function(s) {
+    const v = s.variants[0];
+    const opts = '<option value="" disabled selected>' + v.name + '</option>' +
+      v.options.map(o => '<option>' + o + '</option>').join('');
+    return '<li class="cts__item">' +
+      '<a class="cts__media" href="product.html?id=' + s.id + '"><img src="' + s.image + '" alt="' + s.name + '"></a>' +
+      '<div class="cts__body">' +
+        '<a class="cts__title" href="product.html?id=' + s.id + '">' + s.name + '</a>' +
+        '<span class="cts__price">$' + s.price.toFixed(2) + '</span>' +
+        '<div class="cts__row">' +
+          '<span class="cts__selectwrap"><select class="cts__select">' + opts + '</select></span>' +
+          '<button class="cts__add" type="button">Add</button>' +
+        '</div>' +
+      '</div>' +
+    '</li>';
+  }).join('');
+
+  let ctsCount = 0;
+  const ctsFill = document.getElementById('ctsFill');
+  const ctsHint = document.getElementById('ctsHint');
+  const ctsDots = document.querySelectorAll('.cts__dot');
+
+  function renderProgress(count) {
+    const total = TIERS.length;
+    const posOf = i => (i + 1) / total * 100;
+    let fillPct;
+    if (count >= TIERS[total - 1].qty) {
+      fillPct = 100;
+    } else {
+      let idx = TIERS.findIndex(t => count < t.qty);
+      if (idx < 0) idx = total - 1;
+      const prevQty = idx === 0 ? 0 : TIERS[idx - 1].qty;
+      const prevPos = idx === 0 ? 0 : posOf(idx - 1);
+      const span = posOf(idx) - prevPos;
+      const denom = TIERS[idx].qty - prevQty;
+      const frac = denom > 0 ? (count - prevQty) / denom : 0;
+      fillPct = prevPos + span * Math.max(0, Math.min(1, frac));
+    }
+    ctsFill.style.width = fillPct.toFixed(2) + '%';
+    ctsDots.forEach(d => d.classList.toggle('is-on', count >= (parseInt(d.dataset.qty, 10) || 0)));
+    if (count >= TIERS[total - 1].qty) {
+      ctsHint.textContent = "You've unlocked " + TIERS[total - 1].pct + '% off.';
+    } else {
+      let idx = TIERS.findIndex(t => count < t.qty);
+      if (idx < 0) idx = total - 1;
+      const need = TIERS[idx].qty - count;
+      ctsHint.textContent = 'Add ' + need + (need > 1 ? ' items' : ' item') + ' to unlock ' + TIERS[idx].pct + '% off.';
+    }
+  }
+
+  function markAdded(btn) {
+    const orig = btn.textContent;
+    btn.textContent = 'Added ✓';
+    btn.disabled = true;
+    setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 900);
+  }
+
+  document.querySelectorAll('#ctsList .cts__add').forEach(btn => {
+    btn.addEventListener('click', () => { ctsCount++; renderProgress(ctsCount); markAdded(btn); });
+  });
+  document.getElementById('ctsAddAll').addEventListener('click', function() {
+    ctsCount += set.length;
+    renderProgress(ctsCount);
+    markAdded(this);
+  });
+
+  renderProgress(0);
 })();
 </script>
 <script>
